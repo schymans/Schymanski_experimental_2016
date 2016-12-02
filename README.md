@@ -1,10 +1,14 @@
-# Schymanski_leaf-scale_2016
-Supporting information for article: http://www.hydrol-earth-syst-sci-discuss.net/hess-2016-363/
+# Schymanski_experimental_2016
+Supporting information for article: 
+**Technical note: An experimental setup to measure latent and sensible heat fluxes from (artificial) plant leaves.**
 
-You can either access the files directly on the cloud.sagemath.com server [here]( https://cloud.sagemath.com/projects/e66470cf-1fa4-48bc-8a49-2513f177cf8a/files/Schymanski_leaf-scale_2016/), or follow the below instructions.
+hess-2016-643
+
+Authors: Stan Schymanski (stan.schymanski@env.ethz.ch), Daniel Breitenstein, Dani Or
+
 
 ## Instructions on how to use these files
-- Download all files as [zip file](https://github.com/schymans/Schymanski_leaf-scale_2016/archive/master.zip) and extract to a local directory on your computer.
+- Download all files as [zip file](https://github.com/schymans/Schymanski_experimental_2016/archive/master.zip) and extract to a local directory on your computer.
 - Install [sage](http://www.sagemath.org) on your local computer and start the ipython notebook to work with the files, 
 
 or:
@@ -19,7 +23,7 @@ or:
 
 or:
 
-- Access the published worksheets directly on the cloud.sagemath.com server [here]( https://cloud.sagemath.com/projects/e66470cf-1fa4-48bc-8a49-2513f177cf8a/files/Schymanski_leaf-scale_2016/)
+- Access the published worksheets directly on the cloud.sagemath.com server [here (link needs updating)]( https://cloud.sagemath.com/projects/e66470cf-1fa4-48bc-8a49-2513f177cf8a/files/Schymanski_leaf-scale_2016/)
 
 ## Description of folders
 ### Main folder
@@ -40,9 +44,19 @@ These files consist of input code extracted from the .ipynb worksheets with the 
 These files contain snapshots of worksheet data for quick import into other worksheets.
 ### Worksheet_setup.ipynb
 Contains code to setup the other worksheets. Only relevant if you are interested in the inner workings of the code.
+### Worksheet_update.ipynb
+Converts Worksheet_setup.ipynb to a .sage file, so that it can be more easily imported by other worksheets.
 ### leaf_enbalance_eqs.ipynb
 Contains variable definitions and equations related to the numerical leaf energy balance model.
 ### leaf_enbalance_eqs2s.ipynb
 Based on leaf_enbalance_eqs.ipynb, but contains additional variable definitions and equations related to the two-sided numerical leaf energy balance model (separate leaf temperatures on each side).
 ### E_PM_eqs.ipynb
 Contains variable definitions and equations related to the analytical solutions of the leaf energy balance. It builds on definitions and equations provided in leaf_enbalance_eqs.ipynb
+### leaf_chamber_eqs.ipynb
+Equations to compute wind tunnel energy balance etc. It builds on definitions and equations provided in leaf_enbalance_eqs.ipynb
+### perforated_foils_eqs.ipynb
+Equations to compute stomatal conductance of perforated foils
+### perforated_foils_data.ipynb
+Calculation of conductance values of perforated foils based on confocal laser scanning microscopy images.
+### leaf_chamber_data.ipynb
+Evaluation and plotting of experimental data from leaf wind tunnel. 

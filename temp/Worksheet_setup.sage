@@ -94,7 +94,7 @@ def var2(name, doc='', units=1, domain1='real', latexname='', value = False):
     dict_domain[var1] = domain1
     dict_latex[var1] = var1._latex_()
     docdict[var1] = doc
-    udict[var1] = var1*units
+    udict[var1] = units
     dict_vars[var1] = {'doc': doc, 'units': units, 'domain1': domain1, 'latexname': latexname, 'value': value}
     if value:
         cdict[var1] = value
@@ -135,20 +135,26 @@ def units_check(eq, sfull = True):
     '''
     Checks whether all arguments are keys in udict and returns simplified units
     '''
+    global udict, dict_units
+    udict1 = {}
+    # Need to multiply units with variable, so that we can devide by the symbolic equation later:
+    for key1 in udict.keys():
+        udict1[key1] = key1*udict[key1]
     for blah in eq.arguments():
         udict[blah]
     eq.show()
     if sfull:
-        return convert(eq.subs(udict)/eq).simplify_full()
+        return convert(eq.subs(udict1)/eq).simplify_full()
     else:
-        return convert(eq.subs(udict)/eq)
+        return convert(eq.subs(udict1)/eq)
     
 def fun_units_formatted(variable):
     '''
     Returns units of variable expanded to exponential notation.
     
     '''
-    units1 = (udict[eval(variable)]/eval(variable)).subs(subsdict)
+    global udict, subsdict
+    units1 = (eval(variable)*udict[eval(variable)]/eval(variable)).subs(subsdict)   # multiplication and division by the variable ensures that units1 is a symbolic expression, even if udict[var]
     facs = units1.factor_list()
     str1 = ''
     for term1 in facs:
@@ -352,7 +358,7 @@ def fun_include_ipynb(worksheet, del1 = True, output = True):
 # Below, we export the above commands to a file called Worksheet_setup.sage in the temp folder, which can be loaded in other worksheets by typing:
 # 
 # `load('temp/Worksheet_setup.sage')`
-# To speed things up and avoid re-exporting the worksheet every time it is loaded, we will comment the next line out before saving.
+# However, to avoid re-exporting the file every time it is loaded, we will comment out the command and instead execute it from a different worksheet, Worksheet_update.ipynb.
 
 # In[2]:
 

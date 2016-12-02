@@ -111,47 +111,41 @@ var2('v_w', 'Wind velocity',meter/second)
 
 # In[3]:
 
-print udict[sigm]
-print (watt/meter^2).convert()
-
-
-# In[4]:
-
 eq_Rs_enbal = R_s == R_ll + H_l + E_l
 units_check(eq_Rs_enbal).simplify_full()
 
 
-# In[5]:
+# In[4]:
 
 eq_Rll = R_ll == a_sh*sigm*epsilon_l*(T_l^4 - T_w^4)
 units_check(eq_Rll).simplify_full()
 
 
-# In[6]:
+# In[5]:
 
 eq_Hl = H_l == a_sh*h_c*(T_l - T_a)
 units_check(eq_Hl).simplify_full()
 
 
-# In[7]:
+# In[6]:
 
 eq_El = E_l == E_lmol*M_w*lambda_E
 units_check(eq_El).simplify_full()
 
 
-# In[8]:
+# In[7]:
 
 ustr = str(units_check(M_w*lambda_E))
 print str((M_w*lambda_E).subs(cdict)) + ustr
 
 
-# In[9]:
+# In[8]:
 
 eq_Elmol = E_lmol == g_tw*(C_wl - C_wa)
 units_check(eq_Elmol).simplify_full()
 
 
-# In[10]:
+# In[9]:
 
 eq_gtw = g_tw == 1/(1/g_sw + 1/g_bw)
 eq_gtw.simplify_full().show()
@@ -175,7 +169,7 @@ units_check(eq_gtw).simplify_full()
 # 
 # where $\alpha_a$ is the thermal diffusivity of air. The value of $a_s$ was set to 1 for leaves with stomata on one side only, and to 2 for stomata on both sides. Other values could be used for leaves only partly covered by stomata.
 
-# In[11]:
+# In[10]:
 
 eq_gbw = g_bw == D_va*Sh/L_l
 units_check(eq_gbw).simplify_full()
@@ -203,7 +197,7 @@ units_check(eq_Le).simplify_full()
 # <p> </p>
 # <p> </p>
 
-# In[12]:
+# In[11]:
 
 eq_Cwl = C_wl == P_wl/(R_mol*T_l)
 print units_check(eq_Cwl).simplify_full()
@@ -227,7 +221,7 @@ show(eq_Pwl)
 # 
 # which, for typical values of $P_a$ and $T_a$ amounts to $g_{tw,mol}\approx40$~mol~m$^{-3}g_{tw}$.  For all practical purposes, we found that Eqs. [eq_Elmol](#{eq_Elmol}) and [eq_Elmol_conv](#{eq_Elmol_conv}) with $g_{tw,mol} = g_{tw}\frac{P_a }{R_{mol} T_a}$ give similar results when plotted as functions of leaf temperature.
 
-# In[13]:
+# In[12]:
 
 eq_Elmol_conv = E_lmol == g_twmol*(P_wl-P_wa)/P_a
 print units_check(eq_Elmol_conv).simplify_full()
@@ -281,7 +275,7 @@ print units_check(eq_gtwmol_gtw_iso).simplify_full()
 # 
 # Eq. [eq_C2](#{eq_C2}) was introduced to make Eq.  [eq_Nu_forced_all](#{eq_Nu_forced_all}) valid for all Reynolds numbers, and following considerations explained in our previous work \citep{schymanski_stomatal_2013}, we chose $N_{Re_c}=3000$ in the present simulations.
 
-# In[14]:
+# In[13]:
 
 eq_Cwa = C_wa == P_wa/(R_mol*T_a)
 print units_check(eq_Cwa)
@@ -332,7 +326,7 @@ eq_Nu_forced_all.show()
 # $$P_{O_2} = 0.21(P_a - P_{wa})$$
 # 
 
-# In[15]:
+# In[14]:
 
 eq_Dva = D_va == 1.49e-07*T_a - 1.96e-05
 eq_alphaa = alpha_a == (1.32e-07)*T_a - 1.73e-05
@@ -342,7 +336,7 @@ eq_rhoa_Pwa_Ta = rho_a == (M_w*P_wa + M_N2*P_N2 + M_O2*P_O2)/(R_mol*T_a)
 print units_check(eq_rhoa_Pwa_Ta)
 
 
-# In[16]:
+# In[15]:
 
 eq_Pa = P_a == P_N2 + P_O2 + P_wa
 print units_check(eq_Pa)
@@ -354,7 +348,7 @@ eq_PN2 = soln[0][1]
 units_check(eq_PN2)
 
 
-# In[17]:
+# In[16]:
 
 eq_rhoa = eq_rhoa_Pwa_Ta.subs(eq_PN2, eq_PO2)
 units_check(eq_rhoa).simplify_full()
@@ -362,7 +356,7 @@ units_check(eq_rhoa).simplify_full()
 
 # ## Example calculations
 
-# In[18]:
+# In[17]:
 
 # Energy balance as a function of variables that are independent of leaf temperature
 eqenbalTl = (eq_Rs_enbal - R_s).rhs().subs(eq_El, eq_Hl, eq_Rll).subs(eq_Elmol).subs(eq_Cwl).subs(eq_Pwl)
@@ -371,7 +365,7 @@ eqenbalTl.subs(cdict).args()
 
 # Below, we create a copy of cdict, which is a dictionary with general constants, generated during the definition of variables at the top of the worksheet, and some example values for external forcing and leaf properties needed to compute steady-state fluxes and leaf temperature:
 
-# In[19]:
+# In[18]:
 
 # Input values
 vdict = cdict.copy()
@@ -390,7 +384,7 @@ vdict[v_w] = 1
 
 # Now, we compute all derived variables, using the equations described above.
 
-# In[20]:
+# In[19]:
 
 # Nusselt number
 vdict[nu_a] = eq_nua.rhs().subs(vdict)
@@ -399,7 +393,7 @@ vdict[Nu] = eq_Nu_forced_all.rhs().subs(vdict)
 vdict[Nu]
 
 
-# In[21]:
+# In[20]:
 
 # h_c
 vdict[k_a] = eq_ka.rhs().subs(vdict)
@@ -407,7 +401,7 @@ vdict[h_c] = eq_hc.rhs().subs(vdict)
 vdict[h_c]
 
 
-# In[22]:
+# In[21]:
 
 # gbw
 vdict[D_va] = eq_Dva.rhs().subs(vdict)
@@ -418,7 +412,7 @@ vdict[g_bw] = eq_gbw_hc.rhs().subs(vdict)
 vdict[g_bw]
 
 
-# In[23]:
+# In[22]:
 
 # Hl, Rll
 vdict[R_ll] = eq_Rll.rhs().subs(vdict)
@@ -427,7 +421,7 @@ vdict[H_l] = eq_Hl.rhs().subs(vdict)
 vdict[H_l]
 
 
-# In[24]:
+# In[23]:
 
 # El
 vdict[g_tw] =  eq_gtw.rhs().subs(vdict)
@@ -441,7 +435,7 @@ vdict[E_l]
 
 # Now, we have a dictionary with $E_l$, $H_l$ and $R_{ll}$ as functions of leaf temperature ($T_l$) only. At steady state, [eq_Rs_enbal](#{eq_Rs_enbal}) must be satisfied, so we will substitute the above dictionary into eq_Rs_enbal, subtract $R_s$ and do a numerical search for the root of the equation to obtain steady-state leaf temperature:
 
-# In[25]:
+# In[24]:
 
 # Numerical search for steady-state Tl
 vdict[T_l] = find_root((eq_Rs_enbal - R_s).rhs().subs(vdict), 273, 373)
@@ -450,7 +444,7 @@ vdict[T_l]
 
 # Below, we define a function that performs all the above calculations given a dictionary with the instantaneous forcing:
 
-# In[26]:
+# In[25]:
 
 def fun_SS(vdict1):
     '''
@@ -505,7 +499,7 @@ def fun_SS(vdict1):
     return vdict
 
 
-# In[27]:
+# In[26]:
 
 # Test
 vdict = cdict.copy()
@@ -529,13 +523,13 @@ fun_dict_print(resdict)
 # ### Calculation using known $T_l$
 # If leaf temperature ($T_l$) is known (e.g. measured), but stomatal conductance $g_{sw}$ is not known, we can still calculate $H_l$ and $R_{ll}$, and then obtain $E_l$ from the energy balance equation:
 
-# In[28]:
+# In[27]:
 
 eq_El_enbal = solve(eq_Rs_enbal, E_l)[0]
 units_check(eq_El_enbal)
 
 
-# In[29]:
+# In[28]:
 
 # Test with known Tl but no g_sw
 vdict = cdict.copy()
@@ -568,19 +562,24 @@ eq_El_enbal.subs(vdict)
 
 # # Saving definitions to separate file
 # In the below, we save the definitions and variables to separate files in the /temp directory, one with the extension .sage, from which we can selectively load functions using
-# '''%load fun_name filenam.sage'''
+# `%load fun_name filenam.sage`
 # and one with the extension .sobj, to be loaded elsewhere using 
-# '''load_session()'''
+# `load_session()`
 
-# In[30]:
+# In[29]:
 
 fun_export_ipynb('leaf_enbalance_eqs', 'temp/')
 save_session('temp/leaf_enbalance_eqs')
 
 
+# In[30]:
+
+udict[P_wa]
+
+
 # # Table of symbols
 
-# In[31]:
+# In[40]:
 
 # Creating dictionary to substitute names of units with shorter forms
 var('m s J Pa K kg mol')
