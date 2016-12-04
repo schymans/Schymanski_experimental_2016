@@ -154,7 +154,7 @@ def fun_units_formatted(variable):
     
     '''
     global udict, subsdict
-    units1 = (eval(variable)*udict[eval(variable)]/eval(variable)).subs(subsdict)   # multiplication and division by the variable ensures that units1 is a symbolic expression, even if udict[var]
+    units1 = (eval(variable)*udict[eval(variable)]/eval(variable)).subs(subsdict)   # multiplication and division by the variable ensures that units1 is a symbolic expression, even if udict[var] = 1
     facs = units1.factor_list()
     str1 = ''
     for term1 in facs:
