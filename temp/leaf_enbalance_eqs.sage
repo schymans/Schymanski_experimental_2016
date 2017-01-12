@@ -572,14 +572,9 @@ fun_export_ipynb('leaf_enbalance_eqs', 'temp/')
 save_session('temp/leaf_enbalance_eqs')
 
 
-# In[30]:
-
-udict[P_wa]
-
-
 # # Table of symbols
 
-# In[40]:
+# In[30]:
 
 # Creating dictionary to substitute names of units with shorter forms
 var('m s J Pa K kg mol')

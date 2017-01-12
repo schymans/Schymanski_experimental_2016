@@ -1,4 +1,5 @@
 # Schymanski_experimental_2016
+
 Supporting information for article: 
 **Technical note: An experimental setup to measure latent and sensible heat fluxes from (artificial) plant leaves.**
 
@@ -8,7 +9,7 @@ Authors: Stan Schymanski (stan.schymanski@env.ethz.ch), Daniel Breitenstein, Dan
 
 
 ## Instructions on how to use these files
-- Download all files as [zip file](https://github.com/schymans/Schymanski_experimental_2016/archive/master.zip) and extract to a local directory on your computer.
+- Download newest version of files as [zip file](https://github.com/schymans/Schymanski_experimental_2016/archive/master.zip) and extract to a local directory on your computer.
 - Install [sage](http://www.sagemath.org) on your local computer and start the ipython notebook to work with the files, 
 
 or:
@@ -21,9 +22,8 @@ or:
 - Click on the zip file and extract it when prompted.
 - Click on "Files" at the top left of the browser window to see the files. Click on any of them to execute and edit.
 
-or:
-
-- Access the published worksheets directly on the cloud.sagemath.com server [here (link needs updating)]( https://cloud.sagemath.com/projects/e66470cf-1fa4-48bc-8a49-2513f177cf8a/files/Schymanski_leaf-scale_2016/)
+### To reproduce computational results and plots:
+Open `Worksheet_update.ipynb` in SageMath and click on `Cell` -> `Run All`. Here you can also see in which order the different worksheets need to be run, as their results are re-used by one another.
 
 ## Description of folders
 ### Main folder
@@ -42,10 +42,14 @@ The temp folder contains temporary files created by the worksheets for exchange 
 These files consist of input code extracted from the .ipynb worksheets with the same name. They are used internally to re-use variables and equations defined in various worksheets.
 ### .sobj files
 These files contain snapshots of worksheet data for quick import into other worksheets.
+### .ipynb files
+These files are the actual worksheets containing code and documentation. Here the actual calculations and generation of figures is performed. 
+
+## Description of worksheets
+### Worksheet_update.ipynb
+Converts all other worksheets to .sage files, so that they can be more easily imported by other worksheets. It also contains code to execute all other worksheets in the correct order to reproduce the results and figures. Just open this worksheet in SageMath and click on `Cell` -> `Run all`.
 ### Worksheet_setup.ipynb
 Contains code to setup the other worksheets. Only relevant if you are interested in the inner workings of the code.
-### Worksheet_update.ipynb
-Converts Worksheet_setup.ipynb to a .sage file, so that it can be more easily imported by other worksheets.
 ### leaf_enbalance_eqs.ipynb
 Contains variable definitions and equations related to the numerical leaf energy balance model.
 ### leaf_enbalance_eqs2s.ipynb
