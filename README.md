@@ -1,9 +1,8 @@
 # Schymanski_experimental_2016
 
 Supporting information for article: 
-**Technical note: An experimental setup to measure latent and sensible heat fluxes from (artificial) plant leaves.**
-
-hess-2016-643
+[**Technical note: An experimental setup to measure latent and sensible heat fluxes from (artificial) plant leaves.**](http://www.hydrol-earth-syst-sci-discuss.net/hess-2016-643)
+Hydrol. Earth Syst. Sci. Discuss., doi:10.5194/hess-2016-643, 2017
 
 Authors: Stan Schymanski (stan.schymanski@env.ethz.ch), Daniel Breitenstein, Dani Or
 
